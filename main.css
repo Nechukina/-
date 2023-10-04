@@ -1,9 +1,22 @@
 .col {
     background-color: aliceblue;
     border: 1px solid black;
+    margin-bottom: 10px;
 }
 
-.col-md-4:nth-child(2) {
-    border: 1px dashed black;
+ .box-1 {
+    background-color: rgb(113, 152, 152);
+    }
 
+ .box-2 {
+    border: 1px dashed black;
+    background-color: rgb(174, 205, 232);
+}
+
+ .box-3 {
+    background-color: rgb(141, 241, 241);
+    }
+    
+.hidden {
+    display: none;
 }
