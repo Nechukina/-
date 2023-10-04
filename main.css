@@ -1,0 +1,9 @@
+.col {
+    background-color: aliceblue;
+    border: 1px solid black;
+}
+
+.col-md-4:nth-child(2) {
+    border: 1px dashed black;
+
+}
