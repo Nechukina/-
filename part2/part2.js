@@ -1,19 +1,54 @@
-$( "form" ).submit(function( event ) {
-  event.preventDefault();
-  const result = $( this ).serializeArray();
-  $('form').after(JSON.stringify(result));
+const form = document.querySelector('#form');
 
-  $.ajax({
-    type: "GET",
-    url: "./server.php",
-    data: result,
-    success: function () {
-      alert('Ура! Данные пришли!');
-    },
-    error: function () {
-      alert('Упс! Ошибочка вышла.');
-    }
+const serializeForm = (formNode) => {
+  const data = new FormData(formNode);
+  return data;
+}
+
+
+const onFormSubmit = async (event) =>  {
+  event.preventDefault();
+
+  const data = serializeForm(event.target);
+
+  toggleLoader();
+
+  const {status} = await sendData();
+
+  toggleLoader();  
+
+  if (status === 200) {
+    onSuccess();
+    form.reset();
+  } else {
+    onError();
+  };
+
+  const object = Object.fromEntries(data);
+  const json = JSON.stringify(object);
+
+  const output = document.createElement('div');
+  output.innerHTML = `${json}`;
+  form.after(output);
+  };
+
+const sendData = async () => {
+  return await fetch('server.php', {
+    method: 'GET'
   });
-  $(this).find("input[type=text]").val("");
-  $(this).find("select").val("1");
-});
+}
+
+const onSuccess = () => {
+  alert('Данные получены!');
+}
+
+const onError = () => {
+  alert('Ошибка!');
+}
+
+const toggleLoader = () => {
+  const loader = document.querySelector('#loader');
+  loader.classList.toggle('hidden');
+}
+
+form.addEventListener('submit', onFormSubmit);
