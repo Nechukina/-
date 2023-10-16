@@ -1,44 +1,49 @@
 const header = document.querySelector('.header');
 const buttonYellow = document.querySelector('.btn-warning');
 const buttonGreen = document.querySelector('.btn-success');
-const modal = document.querySelector('#exampleModal');
+const box1 = document.querySelector('.box-1');
+const box2 = document.querySelector('.box-2');
+const modal = document.querySelector('.popup');
+const fade = document.querySelector('.popup-fade');
+const closeButton = document.querySelector('.popup-close');
+
 
 const onButtonYellowClick = () => {
-    header.classList.toggle('hidden');
-    }
+  header.classList.toggle('hidden');
+};
+
+const onButtonGreenClick = () => {
+  toggleBoxes();
+};
+
+let isBox1Swiped = false;
+const toggleBoxes = () => {
+  if (isBox1Swiped) {
+    box1.style.transform = 'translateX(0)';
+    box2.style.transform = 'translateX(0)';
+    isBox1Swiped = false;
+  } else {
+    box1.style.transform = 'translateX(100%)';
+    box2.style.transform = 'translateX(-100%)';
+    isBox1Swiped = true;
+  }
+};
+
+const onCloseBtnClick = () => {
+  fade.classList.add('hidden');
+  closeButton.removeEventListener('click', onCloseBtnClick);
+};
+
+const onEscPress = (evt) => {
+  if (evt.keyCode === 27) {
+	fade.classList.add('hidden');
+	document.removeEventListener('keydown', onEscPress);
+  }
+
+};
 
 buttonYellow.addEventListener('click', onButtonYellowClick);
+buttonGreen.addEventListener('click', onButtonGreenClick);
+closeButton.addEventListener('click', onCloseBtnClick);
+document.addEventListener('keydown', onEscPress);
 
-$(document).ready(function($) {
-	$('.popup-close').click(function() {
-		$(this).parents('.popup-fade').fadeOut();
-		return false;
-	});        
- 
-	$(document).keydown(function(e) {
-		if (e.keyCode === 27) {
-			e.stopPropagation();
-			$('.popup-fade').fadeOut();
-		}
-	});
-	
-	$('.popup-fade').click(function(e) {
-		if ($(e.target).closest('.popup').length == 0) {
-			$(this).fadeOut();					
-		}
-	});	
-});
-
-$(document).ready(function () {
-    $(buttonGreen).click(function() {
-      const box2 = $('.box-2');
-
-      const index2 = box2.index();
-
-      if (index2 !== 1 ) {
-        $('.box-2').insertAfter('.box-1');
-      } else {
-        $('.box-1').insertAfter('.box-2');
-      }
-    })
-   });
