@@ -1,10 +1,10 @@
 const form = document.querySelector('#form');
 
+
 const serializeForm = (formNode) => {
   const data = new FormData(formNode);
   return data;
 }
-
 
 const onFormSubmit = async (event) =>  {
   event.preventDefault();
@@ -30,7 +30,7 @@ const onFormSubmit = async (event) =>  {
   const output = document.createElement('div');
   output.innerHTML = `${json}`;
   form.after(output);
-  };
+};
 
 const sendData = async () => {
   return await fetch('server.php', {

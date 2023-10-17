@@ -6,7 +6,7 @@
 	display: flex;
 	flex-wrap: wrap;
 }
-.third-row{
+.third-row {
 	display: flex;
 	flex-wrap: wrap;
 }
@@ -19,7 +19,6 @@
 	line-height: 50px;
 	vertical-align: middle;
 }
-
 .box-1 {
     background-color: rgb(113, 152, 152);
 	flex-grow: 1;
@@ -36,7 +35,7 @@
 	flex-grow: 1;
 }
 
-.single{
+.single {
     flex-grow: 1;
 }
 .double {
@@ -79,7 +78,7 @@
 	z-index: 5;
 }
 
-@media (max-width: 640px) {
+@media (max-width: 375px) {
 	.second-row, .third-row {
 		flex-direction: column;
 	}
