@@ -2,7 +2,7 @@ const header = document.querySelector('.header');
 const buttonYellow = document.querySelector('.btn-warning');
 const buttonGreen = document.querySelector('.btn-success');
 const box2 = document.querySelector('.box-2');
-const modal = document.querySelector('.popup-wrapper');
+const modal = document.querySelector('.popup');
 const closeButton = document.querySelector('.popup-close');
 const overlay = document.querySelector('.overlay');
 
@@ -45,7 +45,6 @@ const onEscPress = (evt) => {
 };
 
 const onOverlayClick = (evt) => {
-  evt.stopPropagation();
   hideModal();
   overlay.removeEventListener('click', onOverlayClick);
 }
