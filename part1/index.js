@@ -12,23 +12,11 @@ const onButtonYellowClick = () => {
 };
 
 const onButtonGreenClick = () => {
-  toggleBoxes();
+  box2.classList.toggle('priority-order');
 };
 
-let isBoxSwiped = false;
-
-const toggleBoxes = () => {
-  if (isBoxSwiped) {
-    box2.style.order = '0';
-    isBoxSwiped = false;
-  } else {
-    box2.style.order = '-1';
-    isBoxSwiped = true;
-  }
-};
 
 const hideModal = () => {
-  modal.classList.add('hidden');
   overlay.classList.add('hidden');
 };
 
@@ -45,8 +33,10 @@ const onEscPress = (evt) => {
 };
 
 const onOverlayClick = (evt) => {
-  hideModal();
-  overlay.removeEventListener('click', onOverlayClick);
+  if(evt.target === overlay){
+    hideModal();
+    overlay.removeEventListener('click', onOverlayClick);
+  }
 }
 
 buttonYellow.addEventListener('click', onButtonYellowClick);

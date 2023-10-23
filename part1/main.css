@@ -74,6 +74,10 @@
 	right: 10px;
 }
 
+.priority-order {
+	order: -1;
+}
+
 .hidden {
     display: none;
 }
