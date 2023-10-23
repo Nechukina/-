@@ -20,16 +20,16 @@ const onFormSubmit = async (event) =>  {
   if (status === 200) {
     onSuccess();
     form.reset();
+
+    const object = Object.fromEntries(data);
+    const json = JSON.stringify(object);
+
+    const output = document.createElement('div');
+    output.innerHTML = `${json}`;
+    form.after(output);
   } else {
     onError();
   };
-
-  const object = Object.fromEntries(data);
-  const json = JSON.stringify(object);
-
-  const output = document.createElement('div');
-  output.innerHTML = `${json}`;
-  form.after(output);
 };
 
 const sendData = async () => {
