@@ -1,5 +1,5 @@
 const form = document.querySelector('#form');
-
+const url = 'server.php';
 
 const serializeForm = (formNode) => {
   const data = new FormData(formNode);
@@ -10,10 +10,10 @@ const onFormSubmit = async (event) =>  {
   event.preventDefault();
 
   const data = serializeForm(event.target);
-
+  
   toggleLoader();
 
-  const {status} = await sendData();
+  const {status} = await sendData(data);
 
   toggleLoader();  
 
@@ -32,9 +32,12 @@ const onFormSubmit = async (event) =>  {
   };
 };
 
-const sendData = async () => {
-  return await fetch('server.php', {
-    method: 'GET'
+const sendData = async (data) => {
+  const queryParams = new URLSearchParams(data).toString();
+  const fullUrl = `${url}?${queryParams}`;
+
+  return await fetch(fullUrl, {
+    method: 'GET',
   });
 }
 
