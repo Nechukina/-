@@ -27,8 +27,8 @@ const onCloseBtnClick = () => {
 
 const onEscPress = (evt) => {
   if (evt.keyCode === 27) {
-	  hideModal();
-	  document.removeEventListener('keydown', onEscPress);
+    hideModal();
+    document.removeEventListener('keydown', onEscPress);
   }
 };
 
