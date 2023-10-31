@@ -20,27 +20,20 @@ const hideModal = () => {
   overlay.classList.add('hidden');
 };
 
-const onCloseBtnClick = () => {
-  hideModal();
-  closeButton.removeEventListener('click', onCloseBtnClick);
-};
-
 const onEscPress = (evt) => {
   if (evt.keyCode === 27) {
     hideModal();
-    document.removeEventListener('keydown', onEscPress);
   }
 };
 
-const onOverlayClick = (evt) => {
-  if(evt.target === overlay){
+const onModalClose = (evt) => {
+  if(evt.target === overlay || evt.target === closeButton){
     hideModal();
-    overlay.removeEventListener('click', onOverlayClick);
   }
 }
 
 buttonYellow.addEventListener('click', onButtonYellowClick);
 buttonGreen.addEventListener('click', onButtonGreenClick);
-closeButton.addEventListener('click', onCloseBtnClick);
+closeButton.addEventListener('click', onModalClose);
 document.addEventListener('keydown', onEscPress);
-overlay.addEventListener('click', onOverlayClick);
+overlay.addEventListener('click', onModalClose);
